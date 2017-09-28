@@ -6,12 +6,12 @@
   </ion-navbar>
   
   <ion-toolbar no-border-top>
-    <ion-segment [(ngModel)]="feed">
+    <ion-segment [(ngModel)]="segment" (ionChange)="updateFeed(segment)">
       <ion-segment-button value="all">
         All
       </ion-segment-button>
-      <ion-segment-button value="saved">
-        Saved
+      <ion-segment-button value="favorites">
+          Favorites
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -21,7 +21,7 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>    
   </ion-refresher>
-  <div [ngSwitch]="feed">
+  <div [ngSwitch]="segment">
     <ion-list *ngSwitchCase="'all'">
       <ion-item-sliding *ngFor="let post of posts | async">
         <ion-item (click)="showDetail('Detail', post)">
@@ -51,31 +51,33 @@
       </ion-item-sliding>
     </ion-list>
     
-    <ion-list *ngSwitchCase="'saved'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-kitten-1.jpg">
-        </ion-thumbnail>
-        <h2>Luna</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-kitten-3.jpg">
-        </ion-thumbnail>
-        <h2>Milo</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-kitten-4.jpg">
-        </ion-thumbnail>
-        <h2>Bandit</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-kitten-2.jpg">
-        </ion-thumbnail>
-        <h2>Nala</h2>
-      </ion-item>
+    <ion-list *ngSwitchCase="'favorites'">
+        <ion-item-sliding *ngFor="let post of posts | async">
+            <ion-item (click)="showDetail('Detail', post)">
+              <ion-thumbnail item-start>
+                <img [src]="post.thumbnail">
+              </ion-thumbnail>
+              <h2>{{post.title}}</h2> 
+              <h5>{{post?.description}}</h5>       
+            </ion-item>
+            
+            <ion-item-options side="left"> 
+              <button ion-button color="primary">
+                <ion-icon name="text"></ion-icon>
+                Read
+              </button>
+            </ion-item-options>
+            <ion-item-options side="right">
+              <button *ngIf="!isFavorite(post); else removeButton" ion-button large color="secondary" (click)="addFavorite(post)">
+                <ion-icon name="ios-star-outline"></ion-icon>
+              </button>
+              <ng-template #removeButton>
+                <button ion-button large color="danger" (click)="removeFavorite(post)">
+                  <ion-icon name="ios-trash-outline"></ion-icon>
+                </button>
+              </ng-template>
+            </ion-item-options>
+          </ion-item-sliding>
     </ion-list>        
   </div>
 </ion-content>

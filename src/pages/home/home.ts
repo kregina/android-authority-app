@@ -13,9 +13,10 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HomePage {
   
-  feed: string = "all";
+  segment: string = "all";
   isAndroid: boolean = false;
-  posts: Observable<any>;
+  posts;
+  favorites;
   
   constructor(
     public navCtrl: NavController, 
@@ -28,7 +29,7 @@ export class HomePage {
     
     ionViewDidLoad(){
       var loader = this.loading.create();
-      this.posts = this._feedProvider.getFeed()
+      this.posts = this._feedProvider.getFeed(this.segment)
       .finally(() => loader.dismiss());
     }
     
@@ -46,11 +47,19 @@ export class HomePage {
     }
 
     removeFavorite(post){
-      this._favoritesProvider.removeFavorites(post);
+      this._favoritesProvider.removeFavorites(post)
+      .then(() => this.posts = this._feedProvider.getFeed(this.segment));
     }
 
     isFavorite(post){
       return this._favoritesProvider.hasFavorite(post);
     }
+
+    updateFeed(segment){
+      var loader = this.loading.create();
+      this.posts = this._feedProvider.getFeed(segment)
+      .finally(() => loader.dismiss());
+    }
+    
   }
   
