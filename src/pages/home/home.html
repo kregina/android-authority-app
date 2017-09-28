@@ -18,6 +18,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>    
+  </ion-refresher>
   <div [ngSwitch]="feed">
     <ion-list *ngSwitchCase="'all'">
       <ion-item-sliding *ngFor="let item of list | async">
@@ -69,7 +72,6 @@
         </ion-thumbnail>
         <h2>Nala</h2>
       </ion-item>
-    </ion-list>
-    
+    </ion-list>        
   </div>
 </ion-content>

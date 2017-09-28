@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { LoadingController } from 'ionic-angular';
+import 'rxjs/add/operator/finally'; 
 /**
- * Generated class for the DetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+* Generated class for the DetailPage page.
+*
+* See https://ionicframework.com/docs/components/#navigation for more info on
+* Ionic pages and navigation.
+*/
 
 @IonicPage({
   name: 'Detail'
@@ -17,12 +18,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DetailPage {
   item;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public loading: LoadingController) {
+    }
+    
+    ngOnInit() {
+      var loader = this.loading.create();
+      this.item = this.navParams.get('item')
+      loader.dismiss();
+    }
+    
   }
-
-  ngOnInit() {
-    this.item = this.navParams.get('item');
-    console.log('item', this.item);
-  }
-
-}
+  

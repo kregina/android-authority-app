@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do'; 
 import * as xml2js from "xml2js"
+
 /*
 Generated class for the FeedProvider provider.
 
