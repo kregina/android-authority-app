@@ -24,7 +24,7 @@ export class HomePage {
     public loading: LoadingController,
     public _feedProvider: FeedProvider,
     public _favoritesProvider: FavoritesProvider) {
-      // this.isAndroid = platform.is('android');
+      this.isAndroid = platform.is('android');
     }
     
     ionViewDidLoad(){

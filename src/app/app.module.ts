@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { HttpModule } from '@angular/http';
@@ -33,7 +34,8 @@ import { FavoritesProvider } from '../providers/favorites/favorites';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FeedProvider,
-    FavoritesProvider
+    FavoritesProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}

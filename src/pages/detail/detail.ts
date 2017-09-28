@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { ToastController } from 'ionic-angular';
 import 'rxjs/add/operator/finally'; 
 /**
 * Generated class for the DetailPage page.
@@ -21,7 +23,9 @@ export class DetailPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public loading: LoadingController) {
+    public loading: LoadingController,
+    private socialSharing: SocialSharing,
+    public toastCtrl: ToastController) {
     }
     
     ngOnInit() {
@@ -29,6 +33,50 @@ export class DetailPage {
       this.post = this.navParams.get('post');
       loader.dismiss();
     }
+
+    shareViaFacebook(message, image, url){
+      this.socialSharing.shareViaFacebook(message, image, url).then(() => {
+        let toast = this.toastCtrl.create({
+          message: 'The post has been shared!',
+          duration: 3000
+        });
+        toast.present();
+      }).catch(() => {
+        let toast = this.toastCtrl.create({
+          message: 'Error has ocorred!',
+          duration: 3000
+        });
+      });
+    }
     
+    shareViaTwitter(message, image, url){
+      this.socialSharing.shareViaTwitter(message, image, url).then(() => {
+        let toast = this.toastCtrl.create({
+          message: 'The post has been shared!',
+          duration: 3000
+        });
+        toast.present();
+      }).catch(() => {
+        let toast = this.toastCtrl.create({
+          message: 'Error has ocorred!',
+          duration: 3000
+        });
+      });
+    }
+
+    shareViaWhatsApp(message, image, url){
+      this.socialSharing.shareViaWhatsApp(message, image, url).then(() => {
+        let toast = this.toastCtrl.create({
+          message: 'The post has been shared!',
+          duration: 3000
+        });
+        toast.present();
+      }).catch(() => {
+        let toast = this.toastCtrl.create({
+          message: 'Error has ocorred!',
+          duration: 3000
+        });
+      });
+    }
   }
   

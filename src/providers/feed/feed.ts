@@ -29,7 +29,7 @@ export class FeedProvider {
       .map(key => this._favoritesProvider.postsLookup[key]);
       return Observable.of(posts);
     }else{
-      return this.http.get("/feed")
+      return this.http.get("http://www.androidauthority.com/feed/")
       .map(res => res.text())
       .map(this.parseString);
     }
