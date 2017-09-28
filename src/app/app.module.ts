@@ -9,7 +9,6 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { FeedProvider } from '../providers/feed/feed';
-import { FeedParserProvider } from '../providers/feed-parser/feed-parser';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import { FeedParserProvider } from '../providers/feed-parser/feed-parser';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FeedProvider,
-    FeedParserProvider
+    FeedProvider
   ]
 })
 export class AppModule {}

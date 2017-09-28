@@ -23,7 +23,7 @@
       <ion-item-sliding *ngFor="let item of list | async">
         <ion-item (click)="showDetail('Detail', item)">
           <ion-thumbnail item-start>
-            <img [src]="item['media:content'][0].$.url">
+            <img [src]="item.thumbnail">
           </ion-thumbnail>
           <h2>{{item.title}}</h2> 
           <h5>{{item?.description}}</h5>       
