@@ -20,7 +20,6 @@ export class FeedProvider {
   
   getFeed(){
     return this.http.get("/feed")
-    .do(res => console.log('res', res))
     .map(res => res.text())
     .map(this.parseString);
   }
@@ -30,10 +29,10 @@ export class FeedProvider {
     var xmlDoc = parser.parseFromString(text, "text/xml");
     var items = xmlDoc.getElementsByTagName("item");
     var posts = [];
-    console.log('Items', items);
 
     for(var i = 0; i < items.length; i++){
       var post = new Post();
+      post.guid = items[i].getElementsByTagName('guid')[0].childNodes[0].nodeValue;
       post.title = items[i].getElementsByTagName('title')[0].childNodes[0].nodeValue;
       post.link = items[i].getElementsByTagName('link')[0].childNodes[0].nodeValue;;
       //post.categories = items[i]['category'].map(node => node.nodeValue);
@@ -42,13 +41,12 @@ export class FeedProvider {
       post.thumbnail = items[i].getElementsByTagName('media:content')[0].getAttribute('url');
      posts.push(post);
     }
-
-    console.log('Posts', posts);
     return posts;
   }
 }
 
 export class Post{
+  public guid: string;
   public title: string;
   public link: string;
   public pubDate: Date;

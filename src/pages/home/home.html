@@ -23,26 +23,30 @@
   </ion-refresher>
   <div [ngSwitch]="feed">
     <ion-list *ngSwitchCase="'all'">
-      <ion-item-sliding *ngFor="let item of list | async">
-        <ion-item (click)="showDetail('Detail', item)">
+      <ion-item-sliding *ngFor="let post of posts | async">
+        <ion-item (click)="showDetail('Detail', post)">
           <ion-thumbnail item-start>
-            <img [src]="item.thumbnail">
+            <img [src]="post.thumbnail">
           </ion-thumbnail>
-          <h2>{{item.title}}</h2> 
-          <h5>{{item?.description}}</h5>       
+          <h2>{{post.title}}</h2> 
+          <h5>{{post?.description}}</h5>       
         </ion-item>
         
-        <ion-item-options side="left">
+        <ion-item-options side="left"> 
           <button ion-button color="primary">
             <ion-icon name="text"></ion-icon>
             Read
           </button>
         </ion-item-options>
         <ion-item-options side="right">
-          <button ion-button color="secondary">
-            <ion-icon name="mail"></ion-icon>
-            Save
+          <button *ngIf="!isFavorite(post); else removeButton" ion-button large color="secondary" (click)="addFavorite(post)">
+            <ion-icon name="ios-star-outline"></ion-icon>
           </button>
+          <ng-template #removeButton>
+            <button ion-button large color="danger" (click)="removeFavorite(post)">
+              <ion-icon name="ios-trash-outline"></ion-icon>
+            </button>
+          </ng-template>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>

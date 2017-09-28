@@ -17,7 +17,7 @@ import 'rxjs/add/operator/finally';
   templateUrl: 'detail.html',
 })
 export class DetailPage {
-  item;
+  post;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -26,7 +26,7 @@ export class DetailPage {
     
     ngOnInit() {
       var loader = this.loading.create();
-      this.item = this.navParams.get('item')
+      this.post = this.navParams.get('post');
       loader.dismiss();
     }
     

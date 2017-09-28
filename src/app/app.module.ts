@@ -9,6 +9,8 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { FeedProvider } from '../providers/feed/feed';
+import { IonicStorageModule } from '@ionic/storage';
+import { FavoritesProvider } from '../providers/favorites/favorites';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { FeedProvider } from '../providers/feed/feed';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -29,7 +32,8 @@ import { FeedProvider } from '../providers/feed/feed';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FeedProvider
+    FeedProvider,
+    FavoritesProvider
   ]
 })
 export class AppModule {}
