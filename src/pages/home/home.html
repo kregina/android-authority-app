@@ -1,14 +1,75 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar no-border-bottom>
     <ion-title>
-      Ionic Blank
+      <img src="../assets/img/logo/aa_logo_new.svg">
     </ion-title>
   </ion-navbar>
+  
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="feed">
+      <ion-segment-button value="all">
+        All
+      </ion-segment-button>
+      <ion-segment-button value="saved">
+        Saved
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <div [ngSwitch]="feed">
+    <ion-list *ngSwitchCase="'all'">
+      <ion-item-sliding *ngFor="let item of list | async">
+        <ion-item (click)="showDetail('Detail', item)">
+          <ion-thumbnail item-start>
+            <img [src]="item['media:content'][0].$.url">
+          </ion-thumbnail>
+          <h2>{{item.title}}</h2> 
+          <h5>{{item?.description}}</h5>       
+        </ion-item>
+        
+        <ion-item-options side="left">
+          <button ion-button color="primary">
+            <ion-icon name="text"></ion-icon>
+            Read
+          </button>
+        </ion-item-options>
+        <ion-item-options side="right">
+          <button ion-button color="secondary">
+            <ion-icon name="mail"></ion-icon>
+            Save
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    
+    <ion-list *ngSwitchCase="'saved'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-kitten-1.jpg">
+        </ion-thumbnail>
+        <h2>Luna</h2>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-kitten-3.jpg">
+        </ion-thumbnail>
+        <h2>Milo</h2>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-kitten-4.jpg">
+        </ion-thumbnail>
+        <h2>Bandit</h2>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-kitten-2.jpg">
+        </ion-thumbnail>
+        <h2>Nala</h2>
+      </ion-item>
+    </ion-list>
+    
+  </div>
 </ion-content>

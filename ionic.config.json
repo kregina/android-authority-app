@@ -1,5 +1,12 @@
 {
   "name": "android-authority-app",
   "app_id": "",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies" : [{
+    "path" : "/feed",
+    "proxyUrl" : "http://www.androidauthority.com/feed/"
+  }]
 }
