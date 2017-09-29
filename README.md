@@ -1,26 +1,34 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+Aplicativo de leitura de RSS. 
+Teste para a vaga de frontend developer, consumindo a API do Android Authority.
 
-## How to use this template
+# Sumário
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias](#tecnologias)
+- [Contato](#contato)
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
 
-### With the Ionic CLI:
+### Funcionalidades
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+* Consumo de feed da página: http://www.androidauthority.com/feed/
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myBlank blank
-```
+* Pull to refresh.
 
-Then, to run it, cd into `myBlank` and run:
+* Adiconar/remover dos favoritos.
 
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
+* Visualizar favoritos offline.
 
-Substitute ios for android if not on a Mac.
+* Compartilhar com midias sociais (Facebook, Twitter e Whatsapp).
 
+### Tecnologias
+
+* Ionic 3.
+
+* Angular 4.
+
+
+### Contato
+
+email: kelly@kellyregina.com.br
+
+linkedin: https://www.linkedin.com/in/kregina/
