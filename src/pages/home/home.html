@@ -33,18 +33,20 @@
         </ion-item>
         
         <ion-item-options side="left"> 
-          <button ion-button color="primary">
+          <!-- <button ion-button color="primary" (click)="readPost(post)">
             <ion-icon name="text"></ion-icon>
             Read
-          </button>
+          </button> -->
         </ion-item-options>
         <ion-item-options side="right">
-          <button *ngIf="!isFavorite(post); else removeButton" ion-button large color="secondary" (click)="addFavorite(post)">
+          <button *ngIf="!isFavorite(post); else removeButton" ion-button color="secondary" (click)="addFavorite(post)">
             <ion-icon name="ios-star-outline"></ion-icon>
+            Save
           </button>
           <ng-template #removeButton>
-            <button ion-button large color="danger" (click)="removeFavorite(post)">
+            <button ion-button color="danger" (click)="removeFavorite(post)">
               <ion-icon name="ios-trash-outline"></ion-icon>
+              Remove
             </button>
           </ng-template>
         </ion-item-options>

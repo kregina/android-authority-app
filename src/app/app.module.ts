@@ -11,6 +11,7 @@ import { FeedProvider } from '../providers/feed/feed';
 import { IonicStorageModule } from '@ionic/storage';
 import { FavoritesProvider } from '../providers/favorites/favorites';
 import { FEED_URL, getFeedUrl } from './app.config';
+import { LoadingProvider } from '../providers/loading/loading';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FEED_URL, getFeedUrl } from './app.config';
     { provide: FEED_URL, useFactory: getFeedUrl },
     FeedProvider,
     FavoritesProvider,
-    SocialSharing
+    SocialSharing,
+    LoadingProvider
   ]
 })
 export class AppModule {}

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
-import { LoadingController } from 'ionic-angular';
 import { FeedProvider } from '../../providers/feed/feed';
 import 'rxjs/add/operator/finally'; 
 import { FavoritesProvider } from '../../providers/favorites/favorites';
 import { Observable } from 'rxjs/Observable';
+import { LoadingProvider } from '../../providers/loading/loading';
 
 @Component({
   selector: 'page-home',
@@ -15,28 +15,28 @@ export class HomePage {
   
   segment: string = "all";
   posts;
-  favorites;
-  
   constructor(
     public navCtrl: NavController, 
-    public loading: LoadingController,
+    public loading: LoadingProvider,
     public _feedProvider: FeedProvider,
     public _favoritesProvider: FavoritesProvider) {
     }
     
     ionViewDidLoad(){
-      var loader = this.loading.create();
+      this.loading.show();
       this.posts = this._feedProvider.getFeed(this.segment)
-      .finally(() => loader.dismiss());
+      .finally(() => this.loading.hide());
     }
     
     showDetail(page, param){
+      this.loading.show();
       this.navCtrl.push(page, { post: param })
+      .then(() => this.loading.hide());
     }
     
     doRefresh(refresher) {
       this.posts = this._feedProvider.getFeed()
-      .finally(() => refresher.complete()); 
+      .finally(() => refresher.complete());
     }
     
     addFavorite(post){
@@ -53,9 +53,9 @@ export class HomePage {
     }
 
     updateFeed(segment){
-      var loader = this.loading.create();
+      this.loading.show();
       this.posts = this._feedProvider.getFeed(segment)
-      .finally(() => loader.dismiss());
+      .finally(() => this.loading.hide());
     }
     
   }
