@@ -17,6 +17,8 @@
 
 @import '../theme/mixins';
 
-// .toolbar-background{
-//     @include linearGradient(rgba(111,198,18,1), rgba(0,225,190,1));
-// }
+ion-navbar{
+    .toolbar-background{
+        @include linearGradient(rgba(111,198,18,1), rgba(0,225,190,1));
+    }
+}

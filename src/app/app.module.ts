@@ -21,7 +21,10 @@ import { ToastProvider } from '../providers/toast/toast';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      backButtonIcon: 'ios-arrow-back-outline',
+      backButtonText: ''
+    }),
     IonicStorageModule.forRoot(),
     HttpModule
   ],

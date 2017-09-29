@@ -23,7 +23,15 @@ $app-direction: ltr;
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
 
-
+$toolbar-active-color: #fff;
+$list-md-header-margin-bottom: 0;
+$list-md-header-color: rgba(111,198,18,1);
+$list-md-header-font-size: 1.8rem;
+$list-md-border-color: transparent;
+$text-color: #3f3f3f;
+$toolbar-text-color: #fff;
+$toolbar-md-title-text-color: $toolbar-text-color;
+$card-md-title-margin: 2px 0 20px;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -35,10 +43,13 @@ $app-direction: ltr;
 
 $colors: (
   primary:    #488aff,
-  secondary:  #32db64,
+  secondary:  #54cc39,
   danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  light:      #fff,
+  dark:       #222,
+  facebook:   #4A66A0,
+  twitter:    #1DA1F2,
+  whatsapp:   #189D0E
 );
 
 

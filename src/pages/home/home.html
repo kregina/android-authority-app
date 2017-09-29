@@ -1,20 +1,17 @@
 <ion-header>
   <ion-navbar no-border-bottom>
     <ion-title>
-      <img src="../assets/img/logo/aa_logo_new.svg">
+      <img src="../assets/img/logo/aa_logo_new.svg" width="250">
     </ion-title>
-  </ion-navbar>
-  
-  <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="segment" (ionChange)="updateFeed(segment)">
       <ion-segment-button value="all">
         All
       </ion-segment-button>
       <ion-segment-button value="favorites">
-          Favorites
+        Favorites
       </ion-segment-button>
     </ion-segment>
-  </ion-toolbar>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
@@ -23,12 +20,15 @@
   </ion-refresher>
   <div [ngSwitch]="segment">
     <ion-list *ngSwitchCase="'all'">
+      <ion-list-header>
+        Latest News 
+      </ion-list-header>
       <ion-item-sliding *ngFor="let post of posts | async">
         <ion-item (click)="showDetail('Detail', post)">
           <ion-thumbnail item-start>
             <img [src]="post.thumbnail">
           </ion-thumbnail>
-          <h2>{{post.title}}</h2> 
+          <h2><strong>{{post.title}}</strong></h2> 
           <h5>{{post?.description}}</h5>       
         </ion-item>
         
@@ -45,7 +45,7 @@
           </button>
           <ng-template #removeButton>
             <button ion-button color="danger" (click)="removeFavorite(post)">
-              <ion-icon name="ios-trash-outline"></ion-icon>
+              <ion-icon name="ios-star"></ion-icon>
               Remove
             </button>
           </ng-template>
@@ -54,32 +54,35 @@
     </ion-list>
     
     <ion-list *ngSwitchCase="'favorites'">
-        <ion-item-sliding *ngFor="let post of posts | async">
-            <ion-item (click)="showDetail('Detail', post)">
-              <ion-thumbnail item-start>
-                <img [src]="post.thumbnail">
-              </ion-thumbnail>
-              <h2>{{post.title}}</h2> 
-              <h5>{{post?.description}}</h5>       
-            </ion-item>
-            
-            <ion-item-options side="left"> 
-              <button ion-button color="primary">
-                <ion-icon name="text"></ion-icon>
-                Read
-              </button>
-            </ion-item-options>
-            <ion-item-options side="right">
-              <button *ngIf="!isFavorite(post); else removeButton" ion-button large color="secondary" (click)="addFavorite(post)">
-                <ion-icon name="ios-star-outline"></ion-icon>
-              </button>
-              <ng-template #removeButton>
-                <button ion-button large color="danger" (click)="removeFavorite(post)">
-                  <ion-icon name="ios-trash-outline"></ion-icon>
-                </button>
-              </ng-template>
-            </ion-item-options>
-          </ion-item-sliding>
+      <ion-list-header>
+        My Favorites 
+      </ion-list-header>
+      <ion-item-sliding *ngFor="let post of posts | async">
+        <ion-item (click)="showDetail('Detail', post)">
+          <ion-thumbnail item-start>
+            <img [src]="post.thumbnail">
+          </ion-thumbnail>
+          <h2><strong>{{post.title}}</strong></h2> 
+          <h5>{{post?.description}}</h5>       
+        </ion-item>
+        
+        <ion-item-options side="left"> 
+          <button ion-button color="primary">
+            <ion-icon name="text"></ion-icon>
+            Read
+          </button>
+        </ion-item-options>
+        <ion-item-options side="right">
+          <button *ngIf="!isFavorite(post); else removeButton" ion-button color="secondary" (click)="addFavorite(post)">
+            <ion-icon name="ios-star-outline"></ion-icon>
+          </button>
+          <ng-template #removeButton>
+            <button ion-button color="danger" (click)="removeFavorite(post)">
+              <ion-icon name="ios-star"></ion-icon>
+            </button>
+          </ng-template>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>        
   </div>
 </ion-content>

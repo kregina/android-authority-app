@@ -1,7 +1,36 @@
 page-detail {
-    ion-card {
-        img {
-            height: auto;
+    ion-buttons{
+        ion-icon{
+            font-size: 2em;
         }
     }
+    ion-content{
+        ion-buttons{
+            float: left;
+        }
+        p{
+            clear: both;
+        }
+        ion-card {
+            width: 100% !important;
+            img {
+                height: auto;
+            }
+            ion-card-title{
+                .title{
+                    font-size: 1em;
+                    font-weight: bold;
+                }
+                small{
+                    font-size: 55%;
+                    color: #9d9d9d;
+                }
+            }
+
+            ion-card-content{
+                width: 100%;
+            }
+        }
+    }
+    
 }

@@ -7,27 +7,49 @@
 <ion-header>
   
   <ion-navbar>
-    <ion-title>detail</ion-title>
+    <ion-title color="light"></ion-title>
+    <ion-buttons end>
+      <button *ngIf="!isFavorite(post); else removeButton" large ion-button color="light" (click)="addFavorite(post)">
+        <ion-icon name="ios-star-outline"></ion-icon>
+      </button>
+      <ng-template #removeButton>
+        <button ion-button color="light" large (click)="removeFavorite(post)">
+          <ion-icon name="ios-star"></ion-icon>
+        </button>
+      </ng-template>
+    </ion-buttons>
   </ion-navbar>
   
 </ion-header>
 
-<ion-content>
-  <ion-card>
+<ion-content no-padding>
+  
+  <ion-buttons padding>
+    <button ion-button small color="secondary" *ngFor="let category of post?.categories">
+      {{category}}
+    </button>
+  </ion-buttons>
+  
+  
+  <ion-card no-margin>
     <ion-card-content>
       <ion-card-title>
-        {{post?.title}}
-      </ion-card-title>
+        <p class="title">{{post?.title}}</p>
+        <small>
+          by <strong>{{post?.creator}}</strong> . {{post?.pubDate | date: 'medium'}}
+        </small>
+      </ion-card-title>     
+      
       <div [innerHTML]="post.content"></div>
     </ion-card-content>
   </ion-card>
-
+  
   <ion-fab right bottom>
-      <button ion-fab color="light"><ion-icon name="md-share"></ion-icon></button>
-      <ion-fab-list side="top">
-        <button ion-fab><ion-icon name="logo-facebook" (click)="shareViaFacebook(post?.title, post?.thumbnail, post?.guid)"></ion-icon></button>
-        <button ion-fab><ion-icon name="logo-twitter" (click)="shareViaTwitter(post?.title, post?.thumbnail, post?.guid)"></ion-icon></button>
-        <button ion-fab><ion-icon name="logo-whatsapp" (click)="shareViaWhatsApp(post?.title, post?.thumbnail, post?.guid)"></ion-icon></button>
-      </ion-fab-list>
-    </ion-fab>
+    <button ion-fab color="secondary"><ion-icon name="md-share"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab color="facebook"><ion-icon name="logo-facebook" (click)="shareViaFacebook(post?.title, post?.thumbnail, post?.guid)"></ion-icon></button>
+      <button ion-fab color="twitter"><ion-icon name="logo-twitter" (click)="shareViaTwitter(post?.title, post?.thumbnail, post?.guid)"></ion-icon></button>
+      <button ion-fab color="whatsapp"><ion-icon name="logo-whatsapp" (click)="shareViaWhatsApp(post?.title, post?.thumbnail, post?.guid)"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

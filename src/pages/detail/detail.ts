@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LoadingController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Platform } from 'ionic-angular';
 import 'rxjs/add/operator/finally'; 
 import { ToastProvider } from '../../providers/toast/toast';
+import { LoadingProvider } from '../../providers/loading/loading';
+import { FavoritesProvider } from '../../providers/favorites/favorites';
 /**
 * Generated class for the DetailPage page.
 *
@@ -26,22 +27,36 @@ export class DetailPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public loading: LoadingController,
+    public loading: LoadingProvider,
     private socialSharing: SocialSharing,
     public _toastProvider: ToastProvider,
+    public _favoritesProvider: FavoritesProvider,
     public platform: Platform) {
       this.isCordova = platform.is('cordova');
     }
     
     ngOnInit() {
-      var loader = this.loading.create();
+      this.loading.show();
       this.post = this.navParams.get('post');
-      loader.dismiss();
+      this.loading.hide();
+    }
+
+    addFavorite(post){
+      this._favoritesProvider.addFavorites(post);
+    }
+
+    removeFavorite(post){
+      this._favoritesProvider.removeFavorites(post);
+    }
+
+    isFavorite(post){
+      return this._favoritesProvider.hasFavorite(post);
     }
     
     shareViaFacebook(message, image, url){
-      if(this.isCordova){
+      if(this.isCordova && this.platform.ready){
         this.socialSharing.shareViaFacebook(message, image, url).then(() => {
+          console.log('shareFacebook', message, image, url)
           this._toastProvider.show('The post has been shared!', 3000);
         }).catch(() => {
           this._toastProvider.show('Error has ocorred!', 3000);
@@ -52,7 +67,7 @@ export class DetailPage {
     }
     
     shareViaTwitter(message, image, url){
-      if(this.isCordova){
+      if(this.isCordova && this.platform.ready){
         this.socialSharing.shareViaTwitter(message, image, url).then(() => {
           this._toastProvider.show('The post has been shared!', 3000);
         }).catch(() => {
@@ -64,7 +79,7 @@ export class DetailPage {
     }
     
     shareViaWhatsApp(message, image, url){
-      if(this.isCordova){
+      if(this.isCordova && this.platform.ready){
         this.socialSharing.shareViaWhatsApp(message, image, url).then(() => {
           this._toastProvider.show('The post has been shared!', 3000);
         }).catch(() => {

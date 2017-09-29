@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Platform } from 'ionic-angular';
 import { FeedProvider } from '../../providers/feed/feed';
 import 'rxjs/add/operator/finally'; 
 import { FavoritesProvider } from '../../providers/favorites/favorites';
-import { Observable } from 'rxjs/Observable';
 import { LoadingProvider } from '../../providers/loading/loading';
 
 @Component({

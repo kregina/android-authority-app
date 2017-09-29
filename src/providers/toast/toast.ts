@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
 import { ToastController } from 'ionic-angular';
+import 'rxjs/add/operator/map';
 
 /*
   Generated class for the ToastProvider provider.
