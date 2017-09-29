@@ -12,6 +12,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { FavoritesProvider } from '../providers/favorites/favorites';
 import { FEED_URL, getFeedUrl } from './app.config';
 import { LoadingProvider } from '../providers/loading/loading';
+import { ToastProvider } from '../providers/toast/toast';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LoadingProvider } from '../providers/loading/loading';
     FeedProvider,
     FavoritesProvider,
     SocialSharing,
-    LoadingProvider
+    LoadingProvider,
+    ToastProvider
   ]
 })
 export class AppModule {}
