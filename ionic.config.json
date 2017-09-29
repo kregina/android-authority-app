@@ -6,7 +6,7 @@
     "cordova": {}
   },
   "proxies" : [{
-    "path" : "/feed",
+    "path" : "/feed/",
     "proxyUrl" : "http://www.androidauthority.com/feed/"
   }]
 }

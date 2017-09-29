@@ -14,17 +14,14 @@ import { Observable } from 'rxjs/Observable';
 export class HomePage {
   
   segment: string = "all";
-  isAndroid: boolean = false;
   posts;
   favorites;
   
   constructor(
     public navCtrl: NavController, 
-    platform: Platform, 
     public loading: LoadingController,
     public _feedProvider: FeedProvider,
     public _favoritesProvider: FavoritesProvider) {
-      this.isAndroid = platform.is('android');
     }
     
     ionViewDidLoad(){

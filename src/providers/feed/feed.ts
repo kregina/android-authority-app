@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do'; 
-import * as xml2js from "xml2js"
+import { Injectable, Inject } from '@angular/core';
+import { Http } from '@angular/http';
 import { FavoritesProvider } from '../favorites/favorites';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of'; 
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do'; 
+import { FEED_URL } from '../../app/app.config';
 
 /*
 Generated class for the FeedProvider provider.
@@ -16,11 +16,11 @@ and Angular DI.
 
 @Injectable()
 export class FeedProvider {
-  fav;
+ 
   constructor(
     public http: Http,
-    public _favoritesProvider: FavoritesProvider) {
-    console.log('Hello FeedProvider Provider');
+    public _favoritesProvider: FavoritesProvider,
+    @Inject(FEED_URL) public feedUrl: string) {
   }
   
   getFeed(segment = 'all'){
@@ -29,7 +29,7 @@ export class FeedProvider {
       .map(key => this._favoritesProvider.postsLookup[key]);
       return Observable.of(posts);
     }else{
-      return this.http.get("http://www.androidauthority.com/feed/")
+      return this.http.get(this.feedUrl)
       .map(res => res.text())
       .map(this.parseString);
     }
