@@ -55,7 +55,7 @@ export class DetailPage {
     
     shareViaFacebook(message, image, url){
       if(this.isCordova && this.platform.ready){
-        this.socialSharing.shareViaFacebook(message, image, url).then(() => {
+        this.socialSharing.shareViaFacebook(message, null, url).then(() => {
           console.log('shareFacebook', message, image, url)
           this._toastProvider.show('The post has been shared!', 3000);
         }).catch(() => {
