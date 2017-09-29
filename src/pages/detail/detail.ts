@@ -68,7 +68,7 @@ export class DetailPage {
     
     shareViaTwitter(message, image, url){
       if(this.isCordova && this.platform.ready){
-        this.socialSharing.shareViaTwitter(message, image, url).then(() => {
+        this.socialSharing.shareViaTwitter(message, null, url).then(() => {
           this._toastProvider.show('The post has been shared!', 3000);
         }).catch(() => {
           this._toastProvider.show('Error has ocorred!', 3000);
